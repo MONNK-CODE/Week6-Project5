@@ -1,7 +1,6 @@
 import React from 'react';
-const [maxRecipes, setMaxRecipes] = useState(10);
 
-const NumberFilter = ({ setMaxRecipes }) => {
+const NumberFilter = ({ maxRecipes, setMaxRecipes }) => {
     return (
         <div>
             <label htmlFor="max-recipes">Max recipes to display:</label>
@@ -9,13 +8,13 @@ const NumberFilter = ({ setMaxRecipes }) => {
                 id="max-recipes"
                 type="number"
                 value={maxRecipes}
-                onChange={(e) => setMaxRecipes(parseInt(e.target.value, 10))}
+                onChange={(e) => setMaxRecipes(e.target.value ? parseInt(e.target.value, 10) : 0)}
                 min="1"
-                max="30"  // assuming you fetch a max of 30 recipes
+                max="30"  // You can adjust this maximum based on your API limits or preferences
+                className="number-input"
             />
         </div>
     );
 };
 
-
-export default Filter;
+export default NumberFilter;
